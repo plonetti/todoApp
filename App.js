@@ -38,12 +38,11 @@ export default function App() {
 		setNotes(notes);
 		//getNotes();
 		};
-    const deleteNotes= async(i)=> {
-     
+    const deleteNotes= async(i)=> { 
       const updateNotes=[...notes,note];
-      updateNotes.splice(i,1);
-          await this.updateAsyncStorage(updateNotes);
-      setNotes(updateNotes);
+      updateNotes.splice(i,1); // At position i, remove 1 items
+      await this.updateAsyncStorage(updateNotes);
+     // setNotes(updateNotes);
       //getNotes();
       };
 	
