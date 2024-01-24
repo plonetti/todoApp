@@ -31,13 +31,21 @@ export default function App() {
 		setNote('');
   }
   
-   const deleteNotes= async(i)=> {
+   const deleteNotes1= async(i)=> {
 		const notes = cloneNotes();
 		notes.splice(i,1);
       	await this.updateAsyncStorage(notes);
 		setNotes(notes);
 		//getNotes();
 		};
+    const deleteNotes= async(i)=> {
+     
+      const updateNotes=[...notes,note];
+      updateNotes.splice(i,1);
+          await this.updateAsyncStorage(updateNotes);
+      setNotes(updateNotes);
+      //getNotes();
+      };
 	
 	const updateAsyncStorage=(notes)=>{
 		return new Promise ( async (resolve, reject) =>{
