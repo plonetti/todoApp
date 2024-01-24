@@ -12,13 +12,22 @@ export default function App() {
 	const cloneNotes=()=>{
 		return [...notes];
 	}
-
-	const addNote =async ()=> { 
+/*
+	const addNote1 =async ()=> { 
 		if (note.length <=0)
 			return;  
 		const notes=cloneNotes();
 		notes.push(note);
 		await updateAsyncStorage(notes);
+		setNote('');
+  }
+  */
+  const addNote =async ()=> { 
+		if (note.length <=0)
+			return;  
+		const updateNotes=[...notes,note];
+		setNotes(updateNotes);
+		await updateAsyncStorage(updateNotes);
 		setNote('');
   }
   
@@ -51,11 +60,24 @@ export default function App() {
 		  //read error
 		}
 	  }
-	  
+    useEffect( ()=>{
+      const fetchNotes=async()=>{
+        try{
+          const storedNotes=await AsyncStorage.getItem('notes');
+          if (storedNotes!==null){
+            setNotes(JSON.parse(storedNotes));
+          }
+        }catch(error){
+          console.log("Errore:",error);
+        }
+      };
+      fetchNotes();
+      },[]);
+	  /*
 	  useEffect( ()=>{
 		getNotes()
 	  },[notes]);
-	  
+	*/  
 
 /*
     componentDidMount=async ()=>{
