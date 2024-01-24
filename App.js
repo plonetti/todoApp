@@ -39,10 +39,10 @@ export default function App() {
 		//getNotes();
 		};
     const deleteNotes= async(i)=> { 
-      const updateNotes=[...notes,note];
+      const updateNotes=[...notes];
       updateNotes.splice(i,1); // At position i, remove 1 items
       await this.updateAsyncStorage(updateNotes);
-     // setNotes(updateNotes);
+      setNotes(updateNotes);
       //getNotes();
       };
 	
