@@ -12,16 +12,7 @@ export default function App() {
 	const cloneNotes=()=>{
 		return [...notes];
 	}
-/*
-	const addNote1 =async ()=> { 
-		if (note.length <=0)
-			return;  
-		const notes=cloneNotes();
-		notes.push(note);
-		await updateAsyncStorage(notes);
-		setNote('');
-  }
-  */
+
   const addNote =async ()=> { 
 		if (note.length <=0)
 			return;  
@@ -41,7 +32,7 @@ export default function App() {
     const deleteNotes= async(i)=> { 
       const updateNotes=[...notes];
       updateNotes.splice(i,1); // At position i, remove 1 items
-      await this.updateAsyncStorage(updateNotes);
+      await updateAsyncStorage(updateNotes);
       setNotes(updateNotes);
       //getNotes();
       };
