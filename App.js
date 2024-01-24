@@ -80,6 +80,7 @@ useEffect( ()=>{
 			)
 		  )
 	  	}
+
 		</View>  
 		</ScrollView>         
 		<StatusBar style="auto" />
