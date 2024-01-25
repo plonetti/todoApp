@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, ScrollView , FlatList} from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import {Appbar,Text, TextInput, Button, Card, List, IconButton} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -8,13 +8,15 @@ export default function App() {
 
 const [note, setNote] = useState("");
 const [notes, setNotes] = useState([]);
-
-
-const addNote =async ()=> { 	 
-	const updateNotes=[...notes,note];
-	setNotes([...notes, note]); //la notazione ... permette di diffondere una array all'interno di un altro 
-	setNote("");
-	await updateAsyncStorage(notes);	
+cloneNotes=()=>{
+	return [...notes,note];
+}
+const addNote =async ()=> { 
+	//const updateNotes=[...notes,note];
+	//setNotes([...notes, note]); //la notazione ... permette di diffondere una array all'interno di un altro 
+	notes.push(note);
+	await updateAsyncStorage(notes);
+	setNote('');	
 }
 
 const deleteNotes= async(i)=> { 
@@ -73,7 +75,7 @@ useEffect( ()=>{
 			{notes.map ( (item, index) => 
 				(<Card key={index} style={{margin:5}}>               
 				<List.Item
-					title={item}
+					title={() => <Text>{item}</Text> }
 					right={() => <IconButton icon="delete"  onPress={()=>{deleteNotes(index)} } />}
 					/>       
 				</Card>             
